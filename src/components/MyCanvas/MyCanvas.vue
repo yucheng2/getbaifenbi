@@ -14,14 +14,6 @@ const props = defineProps<{
 }>()
 const canvasRef = ref()
 
-// 根据百分比, 在canvas上画点
-function drawPoint(ctx: CanvasRenderingContext2D, x: number, y: number, color: string = 'red') {
-  ctx.fillStyle = color;
-  ctx.beginPath();
-  ctx.arc(x, y, 5, 0, Math.PI * 2, true);
-  ctx.closePath();
-  ctx.fill();
-}
 
 // 根据百分比, 在canvas上画点, 点是图片
 function drawPoint2(ctx: CanvasRenderingContext2D, x: number, y: number, size: number = 40) {
