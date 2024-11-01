@@ -4,45 +4,47 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-dependencies:
-  bootstrap:
-    specifier: ^5.3.2
-    version: 5.3.2(@popperjs/core@2.11.8)
-  bootstrap-vue-next:
-    specifier: ^0.14.10
-    version: 0.14.10(vue@3.3.8)
-  less:
-    specifier: ^4.2.0
-    version: 4.2.0
-  lodash-es:
-    specifier: ^4.17.21
-    version: 4.17.21
-  vue:
-    specifier: ^3.3.4
-    version: 3.3.8(typescript@5.2.2)
-  xlsx:
-    specifier: ^0.18.5
-    version: 0.18.5
+importers:
 
-devDependencies:
-  '@types/lodash-es':
-    specifier: ^4.17.12
-    version: 4.17.12
-  '@vitejs/plugin-vue':
-    specifier: ^4.2.3
-    version: 4.4.1(vite@4.5.0)(vue@3.3.8)
-  typescript:
-    specifier: ^5.0.2
-    version: 5.2.2
-  unplugin-vue-components:
-    specifier: ^0.25.2
-    version: 0.25.2(vue@3.3.8)
-  vite:
-    specifier: ^4.4.5
-    version: 4.5.0(less@4.2.0)
-  vue-tsc:
-    specifier: ^1.8.5
-    version: 1.8.22(typescript@5.2.2)
+  .:
+    dependencies:
+      bootstrap:
+        specifier: ^5.3.2
+        version: 5.3.2(@popperjs/core@2.11.8)
+      bootstrap-vue-next:
+        specifier: ^0.14.10
+        version: 0.14.10(vue@3.3.8)
+      less:
+        specifier: ^4.2.0
+        version: 4.2.0
+      lodash-es:
+        specifier: ^4.17.21
+        version: 4.17.21
+      vue:
+        specifier: ^3.3.4
+        version: 3.3.8(typescript@5.2.2)
+      xlsx:
+        specifier: ^0.18.5
+        version: 0.18.5
+    devDependencies:
+      '@types/lodash-es':
+        specifier: ^4.17.12
+        version: 4.17.12
+      '@vitejs/plugin-vue':
+        specifier: ^4.2.3
+        version: 4.4.1(vite@4.5.0)(vue@3.3.8)
+      typescript:
+        specifier: ^5.0.2
+        version: 5.2.2
+      unplugin-vue-components:
+        specifier: ^0.25.2
+        version: 0.25.2(vue@3.3.8)
+      vite:
+        specifier: ^4.4.5
+        version: 4.5.0(less@4.2.0)
+      vue-tsc:
+        specifier: ^1.8.5
+        version: 1.8.22(typescript@5.2.2)
 
   packages/addIdFromExcel:
     devDependencies:
@@ -353,11 +355,17 @@ packages:
   /@types/lodash-es@4.17.12:
     resolution: {integrity: sha512-0NgftHUcV4v34VhXm8QBSftKVXtbkBG3ViCjs6+eJ5a6y6Mi/jiFGPc1sC7QK+9BFhWrURE3EOggmWaSxL9OzQ==}
     dependencies:
-      '@types/lodash': 4.17.7
+      '@types/lodash': 4.17.13
     dev: true
 
-  /@types/lodash@4.17.7:
-    resolution: {integrity: sha512-8wTvZawATi/lsmNu10/j2hk1KEP0IvjubqPE3cu1Xz7xfXXt5oCq3SNUz4fMIP4XGF9Ky+Ue2tBA3hcS7LSBlA==}
+  /@types/lodash@4.17.13:
+    resolution: {integrity: sha512-lfx+dftrEZcdBPczf9d0Qv0x+j/rfNCMuC6OcfXmO8gkfeNAY88PgKUbvG56whcN23gc27yenwF6oJZXGFpYxg==}
+    dev: true
+
+  /@types/node@20.9.0:
+    resolution: {integrity: sha512-nekiGu2NDb1BcVofVcEKMIwzlx4NjHlcjhoxxKBNLtz15Y1z7MYf549DFvkHSId02Ax6kGwWntIBPC3l/JZcmw==}
+    dependencies:
+      undici-types: 5.26.5
     dev: true
 
   /@types/web-bluetooth@0.0.20:
