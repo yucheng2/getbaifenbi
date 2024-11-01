@@ -41,6 +41,10 @@ function uploadImg() {
   const ctx = canvas.getContext('2d');
   let img = new Image();
   const file = imageInput.files[0];
+  if(!file){
+    alert("请选择图片")
+    return
+  }
   const reader = new FileReader();
 
   reader.onload = (event) => {

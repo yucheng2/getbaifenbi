@@ -4,42 +4,50 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-dependencies:
-  bootstrap:
-    specifier: ^5.3.2
-    version: 5.3.2(@popperjs/core@2.11.8)
-  bootstrap-vue-next:
-    specifier: ^0.14.10
-    version: 0.14.10(vue@3.3.8)
-  less:
-    specifier: ^4.2.0
-    version: 4.2.0
-  lodash-es:
-    specifier: ^4.17.21
-    version: 4.17.21
-  vue:
-    specifier: ^3.3.4
-    version: 3.3.8(typescript@5.2.2)
-  xlsx:
-    specifier: ^0.18.5
-    version: 0.18.5
+importers:
 
-devDependencies:
-  '@vitejs/plugin-vue':
-    specifier: ^4.2.3
-    version: 4.4.1(vite@4.5.0)(vue@3.3.8)
-  typescript:
-    specifier: ^5.0.2
-    version: 5.2.2
-  unplugin-vue-components:
-    specifier: ^0.25.2
-    version: 0.25.2(vue@3.3.8)
-  vite:
-    specifier: ^4.4.5
-    version: 4.5.0(less@4.2.0)
-  vue-tsc:
-    specifier: ^1.8.5
-    version: 1.8.22(typescript@5.2.2)
+  .:
+    dependencies:
+      bootstrap:
+        specifier: ^5.3.2
+        version: 5.3.2(@popperjs/core@2.11.8)
+      bootstrap-vue-next:
+        specifier: ^0.14.10
+        version: 0.14.10(vue@3.3.8)
+      less:
+        specifier: ^4.2.0
+        version: 4.2.0
+      lodash-es:
+        specifier: ^4.17.21
+        version: 4.17.21
+      vue:
+        specifier: ^3.3.4
+        version: 3.3.8(typescript@5.2.2)
+      xlsx:
+        specifier: ^0.18.5
+        version: 0.18.5
+    devDependencies:
+      '@vitejs/plugin-vue':
+        specifier: ^4.2.3
+        version: 4.4.1(vite@4.5.0)(vue@3.3.8)
+      typescript:
+        specifier: ^5.0.2
+        version: 5.2.2
+      unplugin-vue-components:
+        specifier: ^0.25.2
+        version: 0.25.2(vue@3.3.8)
+      vite:
+        specifier: ^4.4.5
+        version: 4.5.0(less@4.2.0)
+      vue-tsc:
+        specifier: ^1.8.5
+        version: 1.8.22(typescript@5.2.2)
+
+  packages/addIdFromExcel:
+    devDependencies:
+      '@types/node':
+        specifier: ^20.9.0
+        version: 20.9.0
 
 packages:
 
@@ -339,6 +347,12 @@ packages:
 
   /@types/estree@1.0.5:
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
+    dev: true
+
+  /@types/node@20.9.0:
+    resolution: {integrity: sha512-nekiGu2NDb1BcVofVcEKMIwzlx4NjHlcjhoxxKBNLtz15Y1z7MYf549DFvkHSId02Ax6kGwWntIBPC3l/JZcmw==}
+    dependencies:
+      undici-types: 5.26.5
     dev: true
 
   /@types/web-bluetooth@0.0.20:
@@ -1036,6 +1050,10 @@ packages:
     resolution: {integrity: sha512-mI4WrpHsbCIcwT9cF4FZvr80QUeKvsUsUvKDoR+X/7XHQH98xYD8YHZg7ANtz2GtZt/CBq2QJ0thkGJMHfqc1w==}
     engines: {node: '>=14.17'}
     hasBin: true
+
+  /undici-types@5.26.5:
+    resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
+    dev: true
 
   /unplugin-vue-components@0.25.2(vue@3.3.8):
     resolution: {integrity: sha512-OVmLFqILH6w+eM8fyt/d/eoJT9A6WO51NZLf1vC5c1FZ4rmq2bbGxTy8WP2Jm7xwFdukaIdv819+UI7RClPyCA==}
