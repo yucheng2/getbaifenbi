@@ -17,6 +17,7 @@
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
+    "@types/lodash-es": "^4.17.12",
     "@vitejs/plugin-vue": "^4.2.3",
     "typescript": "^5.0.2",
     "unplugin-vue-components": "^0.25.2",
