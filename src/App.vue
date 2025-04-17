@@ -7,7 +7,7 @@
   <div>
     <input type="file" ref="imageInputRef" accept="image/*" @change="uploadImg">
     <br/>
-    <MyCanvas ref="canvasRef" :resList="resList"></MyCanvas>
+    <MyCanvas :image="image" ref="canvasRef" :resList="resList"></MyCanvas>
     <hr/>
     <div>
       <label class="label" for="nameInput">名称:</label>
@@ -24,7 +24,7 @@
       </span>
     </div>
     <br/>
-    <ResList :resList="resList"></ResList>
+    <ResList v-model="resList" @remove="refreshCanvas"></ResList>
   </div>
 
 </template>
@@ -36,12 +36,16 @@ import ResList from './components/ResList/ResList.vue'
 
 const canvasRef = ref()
 const imageInputRef = ref()
-const resList = reactive<Res[]>([])
+const resList = ref<Res[]>([])
 const currentinputRef = ref('0')
 const currentNoRef = ref('')
 const convasRefcanvasRef = computed(() => unref(canvasRef)?.canvasRef)
 const autoIncrease = ref(false)
+const image = ref<Image>()
 
+const refreshCanvas= ()=>{
+  canvasRef.value.reDraw()
+}
 // 按钮,导入图片, 导入之后,放在画布上, 点击的时候, 获取当前点在坐标上的位置
 function uploadImg() {
   clear()
@@ -59,12 +63,8 @@ function uploadImg() {
   reader.onload = (event) => {
     img = new Image();
     img.onload = () => {
-      // 获取img的宽高
-      const imgWidth = img.width;
-      const imgHeight = img.height;
-      canvas.width = imgWidth;
-      canvas.height = imgHeight;
-      ctx.drawImage(img, 0, 0, imgWidth, imgHeight);
+      image.value = img
+      canvasRef.value.reDraw()
     };
     // @ts-ignore
     img.src = event.target.result.toString()
@@ -88,7 +88,9 @@ onMounted(() => {
       y: y / height,
       id: unref(currentNoRef) || undefined
     }
-    resList.push(obj)
+    if(resList.value.find((item: any)=>JSON.stringify(item) === JSON.stringify(obj)))return
+    resList.value.push(obj)
+    canvasRef.value.reDraw()
     if (autoIncrease.value) {
       increace()
     }
@@ -108,7 +110,7 @@ function clear() {
   const canvas = unref(convasRefcanvasRef)
   const ctx = canvas.getContext('2d');
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  resList.splice(0, resList.length)
+  resList.value.splice(0, resList.length)
   currentinputRef.value = '0'
   currentNoRef.value = ''
 }

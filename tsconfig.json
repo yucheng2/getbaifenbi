@@ -20,6 +20,11 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "baseUrl": ".",
+    "paths": {
+      // "@/*": ["src/*"],
+      // "@utils/*": ["packages/utils/src/*"]
+    },
     "noFallthroughCasesInSwitch": true
   },
   "include": [

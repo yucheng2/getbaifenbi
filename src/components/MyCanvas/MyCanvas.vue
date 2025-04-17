@@ -4,16 +4,16 @@
 
 <script setup lang="ts">
 
-import {ref, watchEffect} from "vue";
+import {nextTick, ref, watchEffect} from "vue";
 import {Res} from "../props.ts";
 import {isEmpty} from 'lodash-es'
 import PointImg from '../../assets/point.png'
 
 const props = defineProps<{
-  resList: Res[]
+  resList: Res[],
+  image: Image
 }>()
 const canvasRef = ref()
-
 
 // 根据百分比, 在canvas上画点, 点是图片
 function drawPoint2(ctx: CanvasRenderingContext2D, x: number, y: number, size: number = 40) {
@@ -26,19 +26,38 @@ function drawPoint2(ctx: CanvasRenderingContext2D, x: number, y: number, size: n
   }
 }
 
-watchEffect(() => {
+/**
+ * 初始化 图片
+ */
+function initImage() {
+  const img  = props.image
+  if(!img) return
+  const canvas = canvasRef.value
+  const ctx = canvas.getContext('2d');
+  const imgWidth = img.width;
+      const imgHeight = img.height;
+      canvas.width = imgWidth;
+      canvas.height = imgHeight;
+      ctx.drawImage(img, 0, 0, imgWidth, imgHeight);
+}
+
+ const reDraw = async () => {
+  await nextTick()
   // 根据resList, 在canvas上画点
   const canvas = canvasRef.value
-  if (!canvas || !props.resList || isEmpty(props.resList)) return
+  if (!canvas) return
   const ctx = canvas.getContext('2d');
-  // ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  initImage()
   props.resList?.forEach(item => {
     // drawPoint(ctx, item.x * canvas.width, item.y * canvas.height)
     drawPoint2(ctx, item.x * canvas.width, item.y * canvas.height)
   })
-})
+}
+
 defineExpose({
-  canvasRef
+  canvasRef,
+  reDraw
 })
 
 </script>

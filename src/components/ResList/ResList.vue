@@ -5,15 +5,21 @@
       <tr>
         <th>名称</th>
         <th>坐标</th>
+        <th>id</th>
         <th>操作</th>
       </tr>
       </thead>
       <tbody>
-      <tr v-for="item in resList" :key="item.id">
+      <tr v-for="(item,idx) in resList" :key="idx">
         <td>{{ item.name }}</td>
         <td>{{ item.x }}:{{ item.y }}</td>
         <td>
           <td>{{ item.id }}</td>
+        </td>
+        <td>
+          <BButton type="primary" size="small" @click="handleRemove(item)">
+            删除
+          </BButton>
         </td>
       </tr>
       </tbody>
@@ -25,14 +31,21 @@
 <script setup lang="ts">
 import {Res} from "../props.ts";
 import {exportExcel} from "../../utils/excel.ts";
+import { useVModel } from "@vueuse/core";
 
 const props = defineProps<{
-  resList: Res[]
+  modelValue: Res[]
 }>()
-
+const emit=  defineEmits(['update:modelValue',  'remove'])
+const resList= useVModel(props, 'modelValue', emit)
 function exportObj() {
-  exportExcel(props.resList, 'res')
-  console.log(props.resList)
+  exportExcel(resList.value, 'res')
+}
+const handleRemove =(row)=>{
+  // 删除
+  resList.value = resList.value.filter(item => JSON.stringify(item) !== JSON.stringify(row))
+  emit('remove',row)
+  
 }
 </script>
 

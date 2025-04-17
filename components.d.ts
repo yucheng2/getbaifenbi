@@ -7,6 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    BButton: typeof import('bootstrap-vue-next')['BButton']
     BTableSimple: typeof import('bootstrap-vue-next')['BTableSimple']
     MyCanvas: typeof import('./src/components/MyCanvas/MyCanvas.vue')['default']
     ResList: typeof import('./src/components/ResList/ResList.vue')['default']
