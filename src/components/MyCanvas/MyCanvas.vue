@@ -4,14 +4,13 @@
 
 <script setup lang="ts">
 
-import {nextTick, ref, watchEffect} from "vue";
+import {nextTick, ref,} from "vue";
 import {Res} from "../props.ts";
-import {isEmpty} from 'lodash-es'
 import PointImg from '../../assets/point.png'
 
 const props = defineProps<{
   resList: Res[],
-  image: Image
+  image?: HTMLImageElement
 }>()
 const canvasRef = ref()
 

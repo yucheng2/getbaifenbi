@@ -30,9 +30,9 @@
 </template>
 
 <script setup lang="ts">
-import {computed, onMounted, reactive, ref, unref} from "vue";
-import {Res} from "./components/props.ts";
-import ResList from './components/ResList/ResList.vue'
+import { computed, onMounted, ref, unref } from "vue";
+import { Res } from "./components/props.ts";
+import ResList from './components/ResList/ResList.vue';
 
 const canvasRef = ref()
 const imageInputRef = ref()
@@ -41,7 +41,7 @@ const currentinputRef = ref('0')
 const currentNoRef = ref('')
 const convasRefcanvasRef = computed(() => unref(canvasRef)?.canvasRef)
 const autoIncrease = ref(false)
-const image = ref<Image>()
+const image = ref<HTMLImageElement>()
 
 const refreshCanvas= ()=>{
   canvasRef.value.reDraw()
@@ -49,9 +49,7 @@ const refreshCanvas= ()=>{
 // 按钮,导入图片, 导入之后,放在画布上, 点击的时候, 获取当前点在坐标上的位置
 function uploadImg() {
   clear()
-  const canvas = unref(convasRefcanvasRef)
   const imageInput = unref(imageInputRef)
-  const ctx = canvas.getContext('2d');
   let img = new Image();
   const file = imageInput.files[0];
   if(!file){
@@ -110,7 +108,7 @@ function clear() {
   const canvas = unref(convasRefcanvasRef)
   const ctx = canvas.getContext('2d');
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  resList.value.splice(0, resList.length)
+  resList.value.splice(0, resList.value.length)
   currentinputRef.value = '0'
   currentNoRef.value = ''
 }

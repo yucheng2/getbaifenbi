@@ -17,7 +17,7 @@
           <td>{{ item.id }}</td>
         </td>
         <td>
-          <BButton type="primary" size="small" @click="handleRemove(item)">
+          <BButton  @click="handleRemove(item)">
             删除
           </BButton>
         </td>
@@ -29,9 +29,9 @@
 </template>
 
 <script setup lang="ts">
-import {Res} from "../props.ts";
-import {exportExcel} from "../../utils/excel.ts";
 import { useVModel } from "@vueuse/core";
+import { exportExcel } from "../../utils/excel.ts";
+import { Res } from "../props.ts";
 
 const props = defineProps<{
   modelValue: Res[]
@@ -41,7 +41,7 @@ const resList= useVModel(props, 'modelValue', emit)
 function exportObj() {
   exportExcel(resList.value, 'res')
 }
-const handleRemove =(row)=>{
+const handleRemove =(row:Res)=>{
   // 删除
   resList.value = resList.value.filter(item => JSON.stringify(item) !== JSON.stringify(row))
   emit('remove',row)
